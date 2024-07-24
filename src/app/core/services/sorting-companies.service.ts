@@ -8,7 +8,7 @@ import {enviroment} from "../../../enviroments/enviroment";
 import {SortFileds} from "../types";
 
 @Injectable()
-export class SortingCompaniesService  {
+export class SortingCompaniesService {
   private readonly _sortType$: BehaviorSubject<SortType> = new BehaviorSubject<SortType>(SortType.Default);
 
   constructor(private readonly _companyService: CompanyService, private readonly _destroy$: DestroyService) {
@@ -26,22 +26,22 @@ export class SortingCompaniesService  {
       case SortType.Default: {
         return companies
           ? companies
-          : this._companyService.companiesSet = this._companyService.allLoadedCompaniesSnapshot.slice(this._companyService.indexCompanies - enviroment.showItemsCount , this._companyService.indexCompanies);
+          : this._companyService.companies = this._companyService.allLoadedCompaniesSnapshot.slice(this._companyService.indexCompanies - enviroment.showItemsCount, this._companyService.indexCompanies);
       }
       case SortType.Name: {
         return companies
           ? this.sortByField(companies, 'business_name')
-          : this._companyService.companiesSet = this.sortByField(this._companyService.companiesSnapshot, 'business_name');
+          : this._companyService.companies = this.sortByField(this._companyService.companiesSnapshot, 'business_name');
       }
       case SortType.Industry: {
         return companies
           ? this.sortByField(companies, 'industry')
-          : this._companyService.companiesSet = this.sortByField(this._companyService.companiesSnapshot, 'industry');
+          : this._companyService.companies = this.sortByField(this._companyService.companiesSnapshot, 'industry');
       }
       case SortType.Type: {
         return companies
           ? this.sortByField(companies, 'type')
-          : this._companyService.companiesSet = this.sortByField(this._companyService.companiesSnapshot, 'type');
+          : this._companyService.companies = this.sortByField(this._companyService.companiesSnapshot, 'type');
       }
     }
   }

@@ -1,13 +1,13 @@
 <div class="card">
   <div class="card__image-wrapper">
-    <img class="card__image" width="200" height="300" loading="eager"
+    <img class="card__image" loading="lazy"
          [src]="company.logo"
-         alt="Описание изображения">
+         alt="Company Logo">
   </div>
 
   <div class="card__content">
-    <h3 class="card__title">Название компании: {{ company.business_name }}</h3>
-    <p class="card__body">Описание компании: {{ company.industry }}</p>
-    <p class="card__id">ID: {{ company.type }}</p>
+    <h3 class="card__title">suffix: {{ company.business_name }}</h3>
+    <p class="card__body">industry: {{ company.industry }}</p>
+    <p class="card__id">type: {{ company.type }}</p>
   </div>
 </div>

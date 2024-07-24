@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./feature-modules/components/header/compoenents/header.component";
 
@@ -10,5 +10,8 @@ import {HeaderComponent} from "./feature-modules/components/header/compoenents/h
   styleUrl: './app.component.scss',
   providers: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  public ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
 }

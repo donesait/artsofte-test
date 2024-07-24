@@ -15,5 +15,4 @@ export interface ICompanyBase {
   full_address: string;
   latitude: number;
   longitude: number;
-  i?: number
 }

@@ -9,11 +9,10 @@ export class HighlightHoverDirective {
   constructor(private readonly _elementRef: ElementRef) { }
 
   @HostListener('mouseover') onMouseOver() {
-    this._elementRef.nativeElement.style.opacity = 0.5; // Изменяем цвет на синий
+    this._elementRef.nativeElement.style.opacity = 0.5;
   }
 
   @HostListener('mouseout') onMouseOut() {
-    this._elementRef.nativeElement.style.opacity = 1; // Возвращаем исходный цвет (черный)
+    this._elementRef.nativeElement.style.opacity = 1;
   }
-
 }

@@ -8,12 +8,7 @@ import {HighlightHoverDirective} from "../../../directives";
 @Component({
   selector: 'app-sort-control',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    NgIf,
-    NgClass,
-    HighlightHoverDirective
-  ],
+  imports: [ReactiveFormsModule, NgIf, NgClass, HighlightHoverDirective],
   templateUrl: './sort-control.component.html',
   styleUrl: './styles/sort-control.component.scss',
   providers: [
@@ -26,9 +21,9 @@ import {HighlightHoverDirective} from "../../../directives";
 })
 export class SortControlComponent implements ControlValueAccessor {
 
-  protected _sortForm!: FormGroup<SortForm>;
   private onChangeHook!: (value: SortType) => void;
   protected readonly SortType = SortType;
+  protected _sortForm!: FormGroup<SortForm>;
 
   constructor(private readonly _formBuilder: FormBuilder) {
     this.initSortForm();
@@ -43,7 +38,6 @@ export class SortControlComponent implements ControlValueAccessor {
   protected changeType(type: SortType): void {
     this.writeValue(type);
   }
-
 
   public writeValue(value: SortType): void {
     if (this.onChangeHook) {

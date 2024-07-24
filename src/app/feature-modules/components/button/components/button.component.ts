@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {NgStyle} from "@angular/common";
-import {EMPTY} from "rxjs";
 
 @Component({
   selector: 'app-button',

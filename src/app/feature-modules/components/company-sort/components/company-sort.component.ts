@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SortControlComponent} from "../../sort-control/components/sort-control.component";
 import {DestroyService, SortType} from "../../../../core";
 import {SortingCompaniesService} from "../../../../core/services/sorting-companies.service";
-import {debounceTime, takeUntil, tap, throttleTime} from "rxjs";
+import {debounceTime, takeUntil, tap} from "rxjs";
 
 @Component({
   selector: 'app-company-sort',

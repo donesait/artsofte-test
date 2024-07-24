@@ -11,5 +11,5 @@ import {NgStyle} from "@angular/common";
   styleUrl: './styles/loader.component.scss'
 })
 export class LoaderComponent {
-  @Input() public width!: number;
+  @Input({required: true}) public width!: number;
 }

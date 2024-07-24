@@ -1,5 +1,5 @@
 import {Directive, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {debounceTime, filter, fromEvent, of, switchAll, switchMap, takeUntil, tap, throttleTime} from "rxjs";
+import {debounceTime, filter, fromEvent, map, of, switchAll, switchMap, takeUntil, tap, throttleTime} from "rxjs";
 import {CompanyService, DestroyService} from "../../core";
 import {ScrollDirection} from "../../core";
 import {Location} from "@angular/common";
@@ -22,42 +22,37 @@ export class ObserveElementDirective implements OnInit {
 
   public ngOnInit(): void {
     fromEvent(window, 'scroll').pipe(
-      filter(() => {
+      map((): number => {
         const scrollTop: number = window.pageYOffset;
         const scrollHeight: number = document.documentElement.scrollHeight;
         const clientHeight: number = document.documentElement.clientHeight;
 
         if (scrollTop + clientHeight + this.distance >= scrollHeight) {
-          return true
+          return ScrollDirection.Down;
         } else if (scrollTop <= this.distance && this._elementRef.nativeElement.scrollTop === 0 && this.canLoadUp()) {
-          return true
+          return ScrollDirection.Up;
         }
-        return false
+        return ScrollDirection.Skip;
       }),
+      filter((state: number): boolean => state !== ScrollDirection.Skip),
       throttleTime(this.throttle),
-      tap(() => {
-        this.checkScroll()
-      }),
+      tap((direction: ScrollDirection) => this.checkScroll(direction)),
       takeUntil(this._destroy$),
     ).subscribe();
   }
 
-  private checkScroll() {
-    const scrollTop: number = window.pageYOffset;
-    const scrollHeight: number = document.documentElement.scrollHeight;
-    const clientHeight: number = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight + this.distance >= scrollHeight) {
+  private checkScroll(direction: ScrollDirection): void {
+    if (direction === ScrollDirection.Down) {
       this._loadDownCount += 1;
       this.scrolled.emit(ScrollDirection.Down);
-    } else if (scrollTop <= this.distance && this._elementRef.nativeElement.scrollTop === 0 && this.canLoadUp()) {
-      this._loadDownCount -= 1;
-
+    } else {
       this.scrolled.emit(ScrollDirection.Up);
     }
   }
 
   private canLoadUp(): boolean {
     if (this._loadDownCount >= 1) {
+      this._loadDownCount -= 1;
       return true;
     }
     return false;

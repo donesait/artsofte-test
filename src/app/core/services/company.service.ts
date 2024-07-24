@@ -1,7 +1,7 @@
-import {ChangeDetectorRef, Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpEvent, HttpEventType} from "@angular/common/http";
+import {Inject, Injectable} from '@angular/core';
+import {HttpClient, HttpEvent, HttpEventType, HttpParams} from "@angular/common/http";
 import {BASE_API_TOKEN} from "../injection-tokens";
-import {BehaviorSubject, filter, map, Observable, Subscription, tap, throttleTime} from "rxjs";
+import {BehaviorSubject, delay, filter, map, Observable, Subscription, tap, throttleTime} from "rxjs";
 import {enviroment} from "../../../enviroments/enviroment";
 import {ICompanyBase} from "../models";
 
@@ -12,11 +12,8 @@ export class CompanyService {
 
   private readonly _allLoadedCompanies$: BehaviorSubject<ICompanyBase[]> = new BehaviorSubject<ICompanyBase[]>([]);
   private readonly _companies$: BehaviorSubject<ICompanyBase[]> = new BehaviorSubject<ICompanyBase[]>([]);
-  public readonly _defaultSortedCompanies$: BehaviorSubject<ICompanyBase[]> = new BehaviorSubject<ICompanyBase[]>([]);
   private readonly _isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
   private _indexCompanies: number = 0;
-
 
   constructor(@Inject(BASE_API_TOKEN) private readonly _baseUrl: string, private readonly _httpClient: HttpClient) {
     this.getCompanies();
@@ -37,10 +34,7 @@ export class CompanyService {
         }
       }),
       /* Никак не протипизировать */
-      map((response: any): ICompanyBase[] => {
-
-        return response.body.map((t: any, index: number) => ({...t,i : index}));
-      }),
+      map((response: any): ICompanyBase[] => response.body),
       tap((companies: ICompanyBase[]): void => {
         this._allLoadedCompanies$.next([...this._allLoadedCompanies$.value, ...companies]);
         this.updateCompanies();
@@ -69,8 +63,7 @@ export class CompanyService {
     return this._allLoadedCompanies$.value;
   }
 
-  public set companiesSet (companies: ICompanyBase[]) {
-    // console.log('l')
+  public set companies(companies: ICompanyBase[]) {
     if (companies.length) {
       this._companies$.next(companies);
     }
@@ -80,18 +73,16 @@ export class CompanyService {
     return this._companies$.value;
   }
 
-  public get isLoading$(): Observable<boolean> {
-    return this._isLoading$.asObservable();
-  }
-
   public get companies$(): Observable<ICompanyBase[]> {
     return this._companies$.asObservable().pipe(throttleTime(200))
   }
 
   private fetchCompanies(): Observable<HttpEvent<ICompanyBase[]>> {
-    return this._httpClient.get<ICompanyBase[]>(`https://random-data-api.com/api/company/random_company?size=100`, {
+    return this._httpClient.get<ICompanyBase[]>(this._baseUrl, {
+      params: new HttpParams().append('size', 100),
+      responseType: 'json',
       reportProgress: true,
       observe: 'events'
-    })
+    }).pipe(delay(5000))
   }
 }

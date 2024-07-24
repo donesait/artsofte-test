@@ -9,6 +9,8 @@ import {CompanyScrollService} from "../services/company-scroll.service";
 import {SortingCompaniesService} from "../../../../core/services/sorting-companies.service";
 import {animate, stagger, style, transition, trigger} from "@angular/animations";
 import {tap} from "rxjs";
+import {SkeletonLoaderComponent} from "../../sceleton-loader/components/skeleton-loader.component";
+import {ARRAY_FOR_SKELETON} from "../data/constants/skeleton-count.constant";
 
 @Component({
   selector: 'app-company-list',
@@ -21,6 +23,7 @@ import {tap} from "rxjs";
     NgIf,
     LoaderComponent,
     ObserveElementDirective,
+    SkeletonLoaderComponent,
   ],
   templateUrl: './company-list.component.html',
   styleUrl: './style/company-list.component.scss',
@@ -36,18 +39,15 @@ import {tap} from "rxjs";
     ])
   ]
 })
-export class CompanyListComponent implements OnInit {
+export class CompanyListComponent   {
+
+  protected readonly ARRAY_FOR_SKELETON: number[] = ARRAY_FOR_SKELETON;
+
   constructor(@SkipSelf() protected readonly _companyService: CompanyService, private readonly _cd: ChangeDetectorRef, private readonly _router: Router, private readonly _sortingCompaniesService: SortingCompaniesService, private readonly _companyScrollService: CompanyScrollService) {
 
   }
 
-  ngOnInit(): void {
-    this._companyService.companies$.pipe(
-      tap((v) => {
-        this._cd.detectChanges();
-      })
-    ).subscribe()
-    }
+
 
 
   protected onScroll(direction: ScrollDirection): void {

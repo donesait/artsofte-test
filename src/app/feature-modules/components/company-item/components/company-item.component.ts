@@ -8,14 +8,12 @@ import {ICompanyBase} from "../../../../core/models";
   imports: [
     JsonPipe,
     NgIf,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   templateUrl: './company-item.component.html',
   styleUrl: './styles/company-item.component.scss',
 })
 export class CompanyItemComponent {
-  @Input() public company!: ICompanyBase;
+  @Input({required: true}) public company!: ICompanyBase;
   @Input() public index!: number;
-
-
 }
