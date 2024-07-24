@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, SkipSelf} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, SkipSelf} from '@angular/core';
 import {CompanyService, ScrollDirection, trackByFn} from "../../../../core";
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {CompanyItemComponent} from "../../company-item/components/company-item.component";
@@ -36,12 +36,18 @@ import {tap} from "rxjs";
     ])
   ]
 })
-export class CompanyListComponent {
+export class CompanyListComponent implements OnInit {
   constructor(@SkipSelf() protected readonly _companyService: CompanyService, private readonly _cd: ChangeDetectorRef, private readonly _router: Router, private readonly _sortingCompaniesService: SortingCompaniesService, private readonly _companyScrollService: CompanyScrollService) {
-    this._companyService.companies$.pipe(
-      tap((v) => console.log(v))
-    ).subscribe()
+
   }
+
+  ngOnInit(): void {
+    this._companyService.companies$.pipe(
+      tap((v) => {
+        this._cd.detectChanges();
+      })
+    ).subscribe()
+    }
 
 
   protected onScroll(direction: ScrollDirection): void {

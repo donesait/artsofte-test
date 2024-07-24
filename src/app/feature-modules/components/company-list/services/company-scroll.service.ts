@@ -12,9 +12,9 @@ export class CompanyScrollService {
   }
 
   public addCompanies(scrollDirection: ScrollDirection): void {
-    console.log(this._companyService.companiesSnapshot)
+    // console.log(this._companyService.companiesSnapshot)
     const actualPostArray: ICompanyBase[] = this.getActualArray(scrollDirection);
-    console.log(actualPostArray)
+    // console.log(actualPostArray)
     if (scrollDirection === ScrollDirection.Up) {
       this._companyService.indexCompanies = this._companyService.indexCompanies - PRELOAD_ITEM_SIZE;
     } else {
@@ -46,7 +46,7 @@ export class CompanyScrollService {
   private checkAvailableCompaniesForDownScroll(): void {
     const loadedItemsLength: number = this._companyService.allLoadedCompaniesSnapshot.length;
     const availableItems: number = loadedItemsLength - this._companyService.indexCompanies;
-    console.log(availableItems)
+    // console.log(availableItems)
     if (availableItems < PRELOAD_ITEM_SIZE) {
       this._companyService.getCompanies();
     }

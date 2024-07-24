@@ -70,7 +70,7 @@ export class CompanyService {
   }
 
   public set companiesSet (companies: ICompanyBase[]) {
-    console.log('l')
+    // console.log('l')
     if (companies.length) {
       this._companies$.next(companies);
     }
