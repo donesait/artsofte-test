@@ -1,0 +1,12 @@
+<div class="company-list-container" appObserveElement [distance]="400" [throttle]="800" (scrolled)="onScroll($event)">
+  <div class="company-list-content">
+    <ul class="company__list">
+        <li *ngFor="let company of (_companyService.companies$ | async); let index=index;">
+          <h1 style="font-size: 20px">{{company.i}}</h1>
+          <app-company-item (click)="navigateToDetailPage(company.id)" [company]="company" [index]="index"></app-company-item>
+        </li>
+    </ul>
+  </div>
+
+  <app-loader *ngIf="_companyService.isLoading$ | async" [width]="200"></app-loader>
+</div>

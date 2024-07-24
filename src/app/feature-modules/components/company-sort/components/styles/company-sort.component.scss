@@ -1,0 +1,52 @@
+.sort {
+  margin-bottom: 20px;
+  text-align: center; /* Выравнивание по центру */
+}
+
+.sort__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center; /* Выравнивание по центру */
+  user-select: none;
+}
+
+
+
+//.form_radio {
+//  margin-bottom: 10px;
+//}
+//.form_radio input[type=radio] {
+//  display: none;
+//}
+//.form_radio label {
+//  display: inline-block;
+//  cursor: pointer;
+//  position: relative;
+//  padding-left: 25px;
+//  margin-right: 0;
+//  line-height: 18px;
+//  user-select: none;
+//}
+//.form_radio label:before {
+//  content: "";
+//  display: inline-block;
+//  width: 17px;
+//  height: 18px;
+//  position: absolute;
+//  left: 0;
+//  bottom: 1px;
+//}
+//
+///* Checked */
+//
+//
+///* Hover */
+//.form_radio label:hover:before {
+//  filter: brightness(120%);
+//}
+//
+///* Disabled */
+//.form_radio input[type=radio]:disabled + label:before {
+//  filter: grayscale(100%);
+//}

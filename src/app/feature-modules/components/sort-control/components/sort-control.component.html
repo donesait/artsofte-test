@@ -1,0 +1,21 @@
+<ng-container *ngIf="_sortForm.controls as controlMap">
+  <div class="sort__option" (click)="changeType(SortType.Default)" [ngClass]="{'active' : isActive(SortType.Default)}" >
+    <input type="radio" name="sort" [value]="SortType.Default" id="sort-default" [formControl]="controlMap.type">
+    <label for="sort-default" appHighlightHover><span>По умолчанию</span></label >
+  </div>
+
+  <div class="sort__option" (click)="changeType(SortType.Name)" [ngClass]="{'active' : isActive(SortType.Name)}" >
+    <input type="radio" name="sort" [value]="SortType.Name" id="sort-name" [formControl]="controlMap.type">
+    <label for="sort-name" appHighlightHover><span>По имени</span></label >
+  </div>
+
+  <div class="sort__option" (click)="changeType(SortType.Type)" [ngClass]="{'active' : isActive(SortType.Type)}" >
+    <input type="radio" name="sort" [value]="SortType.Type" id="sort-type" [formControl]="controlMap.type">
+    <label for="sort-type" appHighlightHover><span>По типу</span></label >
+  </div>
+
+  <div class="sort__option" (click)="changeType(SortType.Industry)" [ngClass]="{'active' : isActive(SortType.Industry)}" >
+    <input type="radio" name="sort" [value]="SortType.Industry" id="sort-industry" [formControl]="controlMap.type">
+    <label for="sort-industry" appHighlightHover><span>По виду деятельности</span></label >
+  </div>
+</ng-container>

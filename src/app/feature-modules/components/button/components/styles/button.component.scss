@@ -1,0 +1,21 @@
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000000;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.button:hover {
+  border-color: black;
+}
+
+button[backgroundColor="green"] {
+  background-color: #4CAF50;
+}
+
+button[backgroundColor="default"] {
+  background-color: #f7f9fb;
+}

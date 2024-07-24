@@ -1,0 +1,98 @@
+.company-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.company-detail__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.company-detail__name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.company-detail__logo {
+  width: 100px;
+  height: auto;
+}
+
+.company-detail__info {
+  margin-bottom: 20px;
+}
+
+.company-detail__info-block {
+  margin-bottom: 20px;
+}
+
+.company-detail__info-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.company-detail__info-text {
+  margin-bottom: 10px;
+}
+
+.company-detail__info-list {
+  list-style: none;
+  padding: 0;
+}
+
+.company-detail__info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.company-detail__info-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.company-detail__info-link {
+  color: blue;
+  text-decoration: none;
+}
+
+.company-detail__info-link:hover {
+  text-decoration: underline;
+}
+
+.company-detail__social {
+  margin-bottom: 20px;
+}
+
+.company-detail__social-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.company-detail__social-item {
+  margin-right: 10px;
+}
+
+/* Стили для иконок Font Awesome */
+.fab {
+  font-size: 20px;
+}
+
+.company-detail__back {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.company-detail__back-link {
+  color: blue;
+  text-decoration: none;
+}
+
+.company-detail__back-link:hover {
+  text-decoration: underline;
+}
