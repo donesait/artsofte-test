@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {filter, map, takeUntil, tap} from "rxjs";
 import {DestroyService} from "../../../core";
-import {CompanyDetailService} from "./services/company-detail.service";
+import {CompanyDetailService} from "../services/company-detail.service";
 import {NgIf} from "@angular/common";
 import {ButtonComponent} from "../../../feature-modules";
 

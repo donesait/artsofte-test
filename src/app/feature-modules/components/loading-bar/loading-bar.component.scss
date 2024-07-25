@@ -1,0 +1,25 @@
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #eee;
+  z-index: 1000;
+}
+
+.loading-bar__fill {
+  height: 100%;
+  background-color: #007bff;
+  width: 0;
+  animation: loadingBarAnimation 400ms linear infinite;
+}
+
+@keyframes loadingBarAnimation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}

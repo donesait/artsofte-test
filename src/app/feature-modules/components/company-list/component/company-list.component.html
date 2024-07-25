@@ -1,14 +1,25 @@
-<div class="company-list-container">
+<ng-container>
 
-  <div *ngIf="(_companyService.companies$ | async)?.length" class="common-list-container__content" appObserveElement [distance]="400" [throttle]="800" (scrolled)="onScroll($event)">
-    <ul class="company__list">
+  <div class="company-list-container" *ngIf="!(_companyService.isLoading$ | async); else skeletonLoader">
+    <div *ngIf="((_companyService.companies$ | async)?.length); else nothingFound" class="common-list-container__content">
+      <ul class="company__list" appObserveElement [distance]="200" [throttle]="800" (scrolled)="onScroll($event)">
         <li *ngFor="let company of (_companyService.companies$ | async); let index=index;" class="company-list__item">
           <app-company-item (click)="navigateToDetailPage(company.id)" [company]="company" [index]="index"></app-company-item>
         </li>
-    </ul>
+      </ul>
+    </div>
   </div>
 
-  <ng-container *ngIf="!(_companyService.companies$ | async)?.length">
-    <app-skeleton-loader *ngFor="let i of ARRAY_FOR_SKELETON" class="common-list-container__content"></app-skeleton-loader>
-  </ng-container>
-</div>
+  <ng-template #skeletonLoader>
+    <div class="company-list-container">
+      <app-skeleton-loader *ngFor="let i of ARRAY_FOR_SKELETON" class="common-list-container__content"></app-skeleton-loader>
+    </div>
+  </ng-template>
+
+  <ng-template #nothingFound>
+    <div class="nothing-found-container">
+      <h3 class="nothing-found__title">По вашим фильтрам ничего не найдено. Рекомендую сбросить фильтры или изменить их.</h3>
+    </div>
+  </ng-template>
+
+</ng-container>

@@ -1,0 +1,11 @@
+<div class="modal-overlay">
+  <div class="modal-content" (click)="stopPropagation($event)">
+    <h2 class="modal-content___title">Выбор хранилища</h2>
+    <p class="modal-content___description">Выберите, куда будут храниться загруженные данные</p>
+    <p class="modal-content___description">Учтите, что изменения применятся только после перезагрузки</p>
+    <div class="modal-content-button__wrapper">
+      <app-button class="modal-content__button" [click]="selectApplicationStore.bind(this)">Кэш приложения</app-button>
+      <app-button class="modal-content__button" [click]="selectLocalStorage.bind(this)">Local Storage</app-button>
+    </div>
+  </div>
+</div>

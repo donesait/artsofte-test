@@ -1,9 +1,22 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpEventType, HttpParams} from "@angular/common/http";
 import {BASE_API_TOKEN} from "../injection-tokens";
-import {BehaviorSubject, delay, filter, map, Observable, Subscription, tap, throttleTime} from "rxjs";
+import {
+  BehaviorSubject,
+  delay,
+  filter,
+  map,
+  Observable,
+  Subscription,
+  switchMap,
+  tap,
+  throttleTime,
+  throwError
+} from "rxjs";
 import {enviroment} from "../../../enviroments/enviroment";
 import {ICompanyBase} from "../models";
+import {LocalStorageService} from "./local-storage.service";
+import {DATA_KEY, SELECT_STORE_KEY} from "../constants";
 
 @Injectable({
   providedIn: 'root'
@@ -12,31 +25,31 @@ export class CompanyService {
 
   private readonly _allLoadedCompanies$: BehaviorSubject<ICompanyBase[]> = new BehaviorSubject<ICompanyBase[]>([]);
   private readonly _companies$: BehaviorSubject<ICompanyBase[]> = new BehaviorSubject<ICompanyBase[]>([]);
-  private readonly _isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private readonly _isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private _indexCompanies: number = 0;
 
-  constructor(@Inject(BASE_API_TOKEN) private readonly _baseUrl: string, private readonly _httpClient: HttpClient) {
-    this.getCompanies();
+  constructor(@Inject(BASE_API_TOKEN) private readonly _baseUrl: string, private readonly _httpClient: HttpClient, private readonly _storageService: LocalStorageService) {
+    if (this._storageService.getData(SELECT_STORE_KEY) === 'localstorage') {
+      if (this._storageService.getData(DATA_KEY)) {
+        this._allLoadedCompanies$.next(JSON.parse(this._storageService.getData(DATA_KEY)!))
+        this.updateCompanies();
+      } else {
+        this.getCompanies();
+      }
+    } else {
+      this._storageService.saveData(SELECT_STORE_KEY, 'application')
+      this.getCompanies();
+    }
   }
 
   public getCompanies(): Subscription {
     return this.fetchCompanies().pipe(
-      filter((events: HttpEvent<ICompanyBase[]>): boolean => {
-        if (events.type === HttpEventType.Response) {
-          this._isLoading$.next(false);
-          return true;
-        } else {
-          if (this._isLoading$.value) {
-            return false;
-          }
-          this._isLoading$.next(true);
-          return false;
-        }
-      }),
-      /* Никак не протипизировать */
-      map((response: any): ICompanyBase[] => response.body),
+      map((response: ICompanyBase[]): ICompanyBase[] => [...this._allLoadedCompanies$.value, ...response]),
       tap((companies: ICompanyBase[]): void => {
-        this._allLoadedCompanies$.next([...this._allLoadedCompanies$.value, ...companies]);
+        this._allLoadedCompanies$.next(companies);
+        if (this._storageService.getData(SELECT_STORE_KEY) === 'localstorage') {
+          this._storageService.saveData(DATA_KEY, JSON.stringify(this._allLoadedCompanies$.value))
+        }
         this.updateCompanies();
       })
     ).subscribe();
@@ -46,6 +59,7 @@ export class CompanyService {
     if (!this._indexCompanies) {
       this._companies$.next(this._allLoadedCompanies$.value.slice(0, enviroment.showItemsCount))
       this._indexCompanies += enviroment.showItemsCount;
+      this._isLoading$.next(false)
     }
   }
 
@@ -63,10 +77,12 @@ export class CompanyService {
     return this._allLoadedCompanies$.value;
   }
 
+  public get allLoadedCompanies$(): Observable<ICompanyBase[]> {
+    return this._allLoadedCompanies$.asObservable();
+  }
+
   public set companies(companies: ICompanyBase[]) {
-    if (companies.length) {
       this._companies$.next(companies);
-    }
   }
 
   public get companiesSnapshot(): ICompanyBase[] {
@@ -77,12 +93,16 @@ export class CompanyService {
     return this._companies$.asObservable().pipe(throttleTime(200))
   }
 
-  private fetchCompanies(): Observable<HttpEvent<ICompanyBase[]>> {
+  public get isLoading$(): Observable<boolean> {
+    return this._isLoading$.asObservable();
+  }
+
+  private fetchCompanies(): Observable<ICompanyBase[]> {
     return this._httpClient.get<ICompanyBase[]>(this._baseUrl, {
       params: new HttpParams().append('size', 100),
       responseType: 'json',
-      reportProgress: true,
-      observe: 'events'
-    }).pipe(delay(5000))
+      // reportProgress: true,
+      // observe: 'events'
+    }).pipe()
   }
 }

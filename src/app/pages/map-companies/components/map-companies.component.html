@@ -1,1 +1,11 @@
-<p>map-companies works!</p>
+<app-modal *ngIf="_isOpen" (onClose)="closeModal()"></app-modal>
+
+<div class="container">
+    <div class="container__companies-map-list">
+      <app-companies-map-list></app-companies-map-list>
+    </div>
+    <div class="container__companies-map">
+      <app-ya-map class="map"></app-ya-map>
+    </div>
+  </div>
+

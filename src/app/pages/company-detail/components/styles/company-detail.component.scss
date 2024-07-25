@@ -1,98 +1,74 @@
-.company-detail {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.company-detail__header {
+.company {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.company-detail__name {
-  font-size: 24px;
-  font-weight: bold;
-  margin-right: 20px;
-}
-
-.company-detail__logo {
-  width: 100px;
-  height: auto;
-}
-
-.company-detail__info {
-  margin-bottom: 20px;
-}
-
-.company-detail__info-block {
-  margin-bottom: 20px;
-}
-
-.company-detail__info-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.company-detail__info-text {
-  margin-bottom: 10px;
-}
-
-.company-detail__info-list {
-  list-style: none;
-  padding: 0;
-}
-
-.company-detail__info-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.company-detail__info-label {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.company-detail__info-link {
-  color: blue;
-  text-decoration: none;
-}
-
-.company-detail__info-link:hover {
-  text-decoration: underline;
-}
-
-.company-detail__social {
-  margin-bottom: 20px;
-}
-
-.company-detail__social-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-.company-detail__social-item {
-  margin-right: 10px;
-}
-
-/* Стили для иконок Font Awesome */
-.fab {
-  font-size: 20px;
-}
-
-.company-detail__back {
+  justify-content: center;
+  height: 100%;
   text-align: center;
-  margin-top: 20px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.company-detail__back-link {
-  color: blue;
+.company__logo {
+  flex-grow: 1;
+  width: 100%;
+  max-height: 50vh; /* Ограничение по высоте */
+  max-width: 50vw; /* Ограничение по ширине */
+  object-fit: contain;
+}
+
+.company__divider {
+  width: 80%;
+  border: 0;
+  border-top: 2px solid #ccc;
+  margin: 20px 0;
+}
+
+.company__info {
+  width: 100%;
+}
+
+.company__name {
+  font-size: 2.5em;
+  margin: 10px 0;
+}
+
+.company__industry {
+  font-size: 1.5em;
+  color: #777;
+}
+
+.company__catch-phrase {
+  font-style: italic;
+  margin: 20px 0;
+}
+
+.company__contact a {
   text-decoration: none;
+  color: inherit;
 }
 
-.company-detail__back-link:hover {
+.company__contact {
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.company__address {
+  margin: 10px 0;
+  color: #555;
+}
+
+.company__back-link {
+  margin-top: 20px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.company__back-link a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+.company__back-link a:hover {
   text-decoration: underline;
 }

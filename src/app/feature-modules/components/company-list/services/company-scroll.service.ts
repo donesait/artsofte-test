@@ -1,21 +1,22 @@
-import {ChangeDetectorRef, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CompanyService, ScrollDirection} from "../../../../core";
 import {enviroment} from "../../../../../enviroments/enviroment";
 import {PRELOAD_ITEM_SIZE} from "../data/constants/preload-items-size.constant";
 import {ICompanyBase} from "../../../../core/models";
-import {SortingCompaniesService} from "../../../../core/services/sorting-companies.service";
+import {SortingCompaniesService} from "../../../../core";
+import {CompanyFilterService} from "../../../../core";
 
 @Injectable()
 export class CompanyScrollService {
 
-  constructor(private readonly _companyService: CompanyService, private readonly _sortingCompaniesService: SortingCompaniesService, private readonly _cd: ChangeDetectorRef) {
+  constructor(private readonly _companyService: CompanyService, private readonly _sortingCompaniesService: SortingCompaniesService, private readonly _companyFilterService: CompanyFilterService) {
   }
 
   public addCompanies(scrollDirection: ScrollDirection): void {
     const actualPostArray: ICompanyBase[] = this.getActualArray(scrollDirection);
     if (scrollDirection === ScrollDirection.Up) {
       this._companyService.indexCompanies = this._companyService.indexCompanies - PRELOAD_ITEM_SIZE;
-      window.scrollTo({top: window.innerHeight * 4.9232131});
+      window.scrollTo({top: document.body.scrollHeight / 2 - ((window.innerWidth - document.body.scrollWidth) /2 )});
     } else {
       this._companyService.indexCompanies = this._companyService.indexCompanies + PRELOAD_ITEM_SIZE;
       this.checkAvailableCompaniesForDownScroll();
@@ -24,10 +25,12 @@ export class CompanyScrollService {
     this._companyService.companies = actualPostArray;
   }
 
-  private getActualArray(scrollDirection: ScrollDirection): ICompanyBase[] {
-    return scrollDirection === ScrollDirection.Up
+  public getActualArray(scrollDirection: ScrollDirection): ICompanyBase[] {
+    const  companiesArray: ICompanyBase[] = scrollDirection === ScrollDirection.Up
        ? [...this._sortingCompaniesService.startSorting(this._companyService.allLoadedCompaniesSnapshot.slice(this._companyService.indexCompanies - PRELOAD_ITEM_SIZE * 2, this._companyService.indexCompanies - PRELOAD_ITEM_SIZE)), ...this._companyService.companiesSnapshot.slice(0, enviroment.showItemsCount - PRELOAD_ITEM_SIZE)]
     : [...this._companyService.companiesSnapshot.slice(-(enviroment.showItemsCount - PRELOAD_ITEM_SIZE)), ...this._sortingCompaniesService.startSorting(this._companyService.allLoadedCompaniesSnapshot.slice(this._companyService.indexCompanies, this._companyService.indexCompanies + PRELOAD_ITEM_SIZE))]
+
+    return this._companyFilterService.filterCompanies(companiesArray);
   }
 
   private checkAvailableCompaniesForDownScroll(): void {

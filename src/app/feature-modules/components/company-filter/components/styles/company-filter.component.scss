@@ -1,0 +1,31 @@
+.filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter__control {
+  /* Убираем flex: 1; */
+}
+
+.filter__control-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter__control-input,
+.filter__control-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter__button {
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}

@@ -16,6 +16,7 @@
 }
 
 .card__image {
+  padding: 40px;
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -66,5 +67,10 @@
     width: 95%;
     justify-content: center;
     align-items: center;
+    text-align: center;
+  }
+  .card__image {
+    padding: 10px 0 0;
   }
 }
+

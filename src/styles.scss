@@ -7,8 +7,8 @@ html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockq
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
+  font-family: "Montserrat", sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: none;
@@ -21,7 +21,7 @@ footer, header, nav, section, main {
 body {
   line-height: 1;
   scroll-behavior: smooth;
-  background: #f1f7ff;
+  background: #edf1f7;
 }
 
 ol, ul {
@@ -45,8 +45,3 @@ table {
 input {
   border-radius: 0;
 }
-
-:root {
-  --main-font: "Montserrat";
-}/* You can add global styles to this file, and also import other style files */
-

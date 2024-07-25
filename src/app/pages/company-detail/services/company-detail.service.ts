@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {CompanyService, DestroyService} from "../../../../core";
+import {CompanyService, DestroyService} from "../../../core";
 import {filter, map, takeUntil, tap} from "rxjs";
-import {ICompanyBase} from "../../../../core/models";
+import {ICompanyBase} from "../../../core/models";
 
 @Injectable()
 export class CompanyDetailService {

@@ -6,6 +6,9 @@ button {
   color: #000000;
   cursor: pointer;
   transition: border-color 0.3s ease;
+
+  border: 1px solid #ccc;
+  background-color: #fff;
 }
 
 .button:hover {

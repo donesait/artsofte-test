@@ -48,9 +48,11 @@ export class ObserveElementDirective implements OnInit {
     } else {
       this.scrolled.emit(ScrollDirection.Up);
     }
+    console.log(this._loadDownCount)
   }
 
   private canLoadUp(): boolean {
+    console.log('hhh')
     if (this._loadDownCount >= 1) {
       this._loadDownCount -= 1;
       return true;

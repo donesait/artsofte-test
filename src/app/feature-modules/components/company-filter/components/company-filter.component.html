@@ -1,0 +1,22 @@
+<form class="filter" [formGroup]="_filterCompaniesForm.form" *ngIf="_filterCompaniesForm.controlMap as controlMap">
+  <div class="filter__control">
+    <input type="text" id="search" name="search" class="filter__control-input" [formControl]="controlMap.business_name"
+    placeholder="Введите название компании">
+  </div>
+
+  <div class="filter__control">
+    <select id="company_type" name="company_type" class="filter__control-select" [formControl]="controlMap.type">
+      <option value="" disabled>Выберите тип</option>
+      <option *ngFor="let type of _companyFilterService.typeOptions$ | async" [value]="type">{{type}}</option>
+    </select>
+  </div>
+
+  <div class="filter__control">
+    <select id="activity_type" name="activity_type" class="filter__control-select" [formControl]="controlMap.industry">
+      <option value="" disabled>Выберите вид деятельности</option>
+      <option *ngFor="let industry of _companyFilterService.industryOptions$ | async" [value]="industry">{{industry}}</option>
+    </select>
+  </div>
+
+  <button class="filter__button" (click)="resetForm()">Сбросить</button>
+</form>

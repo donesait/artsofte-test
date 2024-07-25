@@ -1,52 +1,13 @@
-<div class="company-detail" *ngIf="_companyDetailService.company as company">
-  <div class="company-detail__header">
-    <h1 class="company-detail__name">{{ company.business_name }}</h1>
-    <img class="company-detail__logo" [src]="company.logo" alt="Логотип компании">
-  </div>
-
-  <div class="company-detail__info">
-    <div class="company-detail__info-block">
-      <h2 class="company-detail__info-title">Описание</h2>
-      <p class="company-detail__info-text">{{ company.suffix }}</p>
-    </div>
-
-    <div class="company-detail__info-block">
-      <h2 class="company-detail__info-title">Контактная информация</h2>
-      <ul class="company-detail__info-list">
-        <li class="company-detail__info-item">
-          <span class="company-detail__info-label">Сайт:</span>
-          <a href="{{ company.industry }}" target="_blank" class="company-detail__info-link">{{ company.industry }}</a>
-        </li>
-        <li class="company-detail__info-item">
-          <span class="company-detail__info-label">Телефон:</span>
-          {{ company.employee_identification_number }}
-        </li>
-        <li class="company-detail__info-item">
-          <span class="company-detail__info-label">Адрес:</span>
-          {{ company.full_address }}
-        </li>
-      </ul>
-    </div>
-
-    <div class="company-detail__info-block">
-      <h2 class="company-detail__info-title">Дополнительная информация</h2>
-      <ul class="company-detail__info-list">
-        <li class="company-detail__info-item">
-          <span class="company-detail__info-label">Отрасль:</span>
-          {{ company.industry }}
-        </li>
-        <li class="company-detail__info-item">
-          <span class="company-detail__info-label">Количество сотрудников:</span>
-          {{ company.bs_company_statement }}
-        </li>
-        <li class="company-detail__info-item">
-          <span class="company-detail__info-label">Год основания:</span>
-          {{ company.phone_number }}
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="company-detail__back">
-    <app-button [click]="navigateToBackUrl.bind(this)" class="company-detail__back-link">Вернуться назад</app-button >
+<div class="company" *ngIf="_companyDetailService.company as company">
+  <img src="{{company.logo}}" alt="Логотип компании" class="company__logo">
+  <hr class="company__divider">
+  <div class="company__name">suffix: {{ company.business_name }}</div>
+  <div class="company__industry">industry: {{company.industry}}</div>
+  <div class="company__catch-phrase">catch_phrase: {{company.catch_phrase}}</div>
+  <div class="company__contact">
+    <a href="tel:{{company.phone_number}}">phone_number: {{company.phone_number}}</a></div>
+  <div class="company__address">Адрес: {{ company.full_address }}</div>
+  <div class="company__back-link">
+    <a (click)="navigateToBackUrl()">Вернуться назад</a>
   </div>
 </div>

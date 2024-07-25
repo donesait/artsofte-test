@@ -1,0 +1,12 @@
+<div class="company-list">
+  <ul class="company-list__items">
+    <li *ngFor="let company of _companyService.allLoadedCompaniesSnapshot.slice(0, 100)" class="company-list__item">
+      <div class="company-list__item-content" (click)="updateCoordinates(company)" appHighlightHover>
+        <div class="company-list__item-image-container">
+        <img [src]="company.logo" loading="lazy" class="company-list__item-image">
+        </div>
+        <p class="company-list__item-suffix">suffix: {{company.business_name}}</p>
+      </div>
+    </li>
+  </ul>
+</div>

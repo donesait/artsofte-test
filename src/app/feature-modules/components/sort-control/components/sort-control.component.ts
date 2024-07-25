@@ -4,6 +4,8 @@ import {SortType} from "../../../../core";
 import {SortForm} from "../data/models/sort-form.type";
 import {NgClass, NgIf} from "@angular/common";
 import {HighlightHoverDirective} from "../../../directives";
+import {tap} from "rxjs";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-sort-control',
@@ -32,7 +34,7 @@ export class SortControlComponent implements ControlValueAccessor {
   private initSortForm(): void {
     this._sortForm = this._formBuilder.group<SortForm>({
       type: this._formBuilder.nonNullable.control(SortType.Default),
-    })
+    });
   }
 
   protected changeType(type: SortType): void {
