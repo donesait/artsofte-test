@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CompanyService} from "../../../../core";
+import {CompanyService} from "@core";
 import {NgForOf} from "@angular/common";
 import {ICompanyBase} from "../../../../core/models";
 import {YandexMapService} from "../../../../pages/map-companies/services/yandex-map.service";

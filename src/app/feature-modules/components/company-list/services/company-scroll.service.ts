@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
-import {CompanyService, ScrollDirection} from "../../../../core";
+import {CompanyFilterService, CompanyService, ScrollDirection, SortingCompaniesService} from "@core";
 import {enviroment} from "../../../../../enviroments/enviroment";
 import {PRELOAD_ITEM_SIZE} from "../data/constants/preload-items-size.constant";
 import {ICompanyBase} from "../../../../core/models";
-import {SortingCompaniesService} from "../../../../core";
-import {CompanyFilterService} from "../../../../core";
 
 @Injectable()
 export class CompanyScrollService {
@@ -16,7 +14,7 @@ export class CompanyScrollService {
     const actualPostArray: ICompanyBase[] = this.getActualArray(scrollDirection);
     if (scrollDirection === ScrollDirection.Up) {
       this._companyService.indexCompanies = this._companyService.indexCompanies - PRELOAD_ITEM_SIZE;
-      window.scrollTo({top: document.body.scrollHeight / 2 - ((window.innerWidth - document.body.scrollWidth) /2 )});
+      window.scrollTo({top: document.body.scrollHeight / 2 - ((window.innerWidth - document.body.scrollWidth) / 2)});
     } else {
       this._companyService.indexCompanies = this._companyService.indexCompanies + PRELOAD_ITEM_SIZE;
       this.checkAvailableCompaniesForDownScroll();
@@ -26,9 +24,9 @@ export class CompanyScrollService {
   }
 
   public getActualArray(scrollDirection: ScrollDirection): ICompanyBase[] {
-    const  companiesArray: ICompanyBase[] = scrollDirection === ScrollDirection.Up
-       ? [...this._sortingCompaniesService.startSorting(this._companyService.allLoadedCompaniesSnapshot.slice(this._companyService.indexCompanies - PRELOAD_ITEM_SIZE * 2, this._companyService.indexCompanies - PRELOAD_ITEM_SIZE)), ...this._companyService.companiesSnapshot.slice(0, enviroment.showItemsCount - PRELOAD_ITEM_SIZE)]
-    : [...this._companyService.companiesSnapshot.slice(-(enviroment.showItemsCount - PRELOAD_ITEM_SIZE)), ...this._sortingCompaniesService.startSorting(this._companyService.allLoadedCompaniesSnapshot.slice(this._companyService.indexCompanies, this._companyService.indexCompanies + PRELOAD_ITEM_SIZE))]
+    const companiesArray: ICompanyBase[] = scrollDirection === ScrollDirection.Up
+      ? [...this._sortingCompaniesService.startSorting(this._companyService.allLoadedCompaniesSnapshot.slice(this._companyService.indexCompanies - PRELOAD_ITEM_SIZE * 2, this._companyService.indexCompanies - PRELOAD_ITEM_SIZE)), ...this._companyService.companiesSnapshot.slice(0, enviroment.showItemsCount - PRELOAD_ITEM_SIZE)]
+      : [...this._companyService.companiesSnapshot.slice(-(enviroment.showItemsCount - PRELOAD_ITEM_SIZE)), ...this._sortingCompaniesService.startSorting(this._companyService.allLoadedCompaniesSnapshot.slice(this._companyService.indexCompanies, this._companyService.indexCompanies + PRELOAD_ITEM_SIZE))]
 
     return this._companyFilterService.filterCompanies(companiesArray);
   }

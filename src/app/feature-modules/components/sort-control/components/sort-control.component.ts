@@ -1,11 +1,9 @@
 import {Component, forwardRef} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule} from "@angular/forms";
-import {SortType} from "../../../../core";
+import {SortType} from "@core";
 import {SortForm} from "../data/models/sort-form.type";
 import {NgClass, NgIf} from "@angular/common";
 import {HighlightHoverDirective} from "../../../directives";
-import {tap} from "rxjs";
-import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-sort-control',
@@ -54,7 +52,7 @@ export class SortControlComponent implements ControlValueAccessor {
   public registerOnTouched(): void {
   }
 
-  protected isActive(value: SortType):boolean {
+  protected isActive(value: SortType): boolean {
     return this._sortForm.controls.type.value === value;
   }
 }

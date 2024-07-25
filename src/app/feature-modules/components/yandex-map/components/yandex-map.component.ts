@@ -1,8 +1,8 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {YandexMapService} from "../../../../pages/map-companies/services/yandex-map.service";
-import {debounceTime, filter, takeUntil, tap, throttleTime} from "rxjs";
+import {debounceTime, filter, takeUntil, tap} from "rxjs";
 import {ICoordinates} from "../../../../pages/map-companies/data/models/coordinates.interface";
-import {DestroyService} from "../../../../core";
+import {DestroyService} from "@core";
 import {ICompanyShortInformation} from "../../../../pages/map-companies/data/models/company-short-information.type";
 
 declare const ymaps: any;
@@ -17,7 +17,6 @@ declare const ymaps: any;
 export class YandexMapComponent implements OnInit {
   @Input() public latitude: number = 30;
   @Input() public longitude: number = 40;
-  @ViewChild('yamaps') private readonly _elementRef!: ElementRef;
   private _map: any;
 
   constructor(private readonly _yandexMapService: YandexMapService, private readonly _destroy$: DestroyService) {
@@ -32,7 +31,7 @@ export class YandexMapComponent implements OnInit {
 
   private createMap(): void {
     this._map = new ymaps.Map('map', {
-      center: [30,40],
+      center: [30, 40],
       zoom: 2
     });
 
@@ -71,10 +70,6 @@ export class YandexMapComponent implements OnInit {
       this._map.geoObjects.add(placemark);
 
     })
-  }
-
-  public f() {
-    console.log('e')
   }
 
   private generateBalloonContent(shortInformation: ICompanyShortInformation): string {

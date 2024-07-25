@@ -1,18 +1,14 @@
 import {Component, SkipSelf} from '@angular/core';
-import {CompanyService, ScrollDirection} from "../../../../core";
-import {AsyncPipe, CommonModule, JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {CompanyService, ScrollDirection} from "@core";
+import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {CompanyItemComponent} from "../../company-item/components/company-item.component";
-import {LoaderComponent} from "../../loader/components/loader.component";
 import {HighlightHoverDirective, ObserveElementDirective} from "../../../directives";
 import {Router} from "@angular/router";
 import {CompanyScrollService} from "../services/company-scroll.service";
-import {SortingCompaniesService} from "../../../../core/services/sorting-companies.service";
-import {animate, stagger, style, transition, trigger} from "@angular/animations";
+import {SortingCompaniesService} from "@core";
 import {SkeletonLoaderComponent} from "../../sceleton-loader/components/skeleton-loader.component";
 import {ARRAY_FOR_SKELETON} from "../data/constants/skeleton-count.constant";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {BrowserModule} from "@angular/platform-browser";
-import {CompanyFilterService} from "../../../../core/services/company-filter.service";
+import {CompanyFilterService} from "@core";
 
 @Component({
   selector: 'app-company-list',
@@ -23,7 +19,6 @@ import {CompanyFilterService} from "../../../../core/services/company-filter.ser
     NgForOf,
     CompanyItemComponent,
     NgIf,
-    LoaderComponent,
     ObserveElementDirective,
     SkeletonLoaderComponent,
     HighlightHoverDirective,

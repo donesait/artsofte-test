@@ -2,7 +2,7 @@ import {ApplicationConfig, ErrorHandler, provideZoneChangeDetection} from '@angu
 import {provideRouter} from '@angular/router';
 import {routes} from './app.routes';
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
-import {GlobalErrorHandlerService} from "./core";
+import {GlobalErrorHandlerService} from "@core";
 import {globalRetryInterceptor} from "./core/interceptors/global-retry.interceptor";
 
 export const appConfig: ApplicationConfig = {

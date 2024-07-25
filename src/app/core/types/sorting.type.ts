@@ -1,1 +1,1 @@
-export type SortFileds = 'business_name' | 'industry' | 'type'
+export type SortFileds = 'business_name' | 'industry' | 'type';

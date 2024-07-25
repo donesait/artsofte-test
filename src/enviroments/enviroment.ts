@@ -1,5 +1,5 @@
 export const enviroment = {
-  production: false,
+  production: true,
   api: 'https://random-data-api.com/api/company/random_company',
   showItemsCount: 50,
 }

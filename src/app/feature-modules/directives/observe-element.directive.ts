@@ -1,8 +1,6 @@
 import {Directive, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {debounceTime, filter, fromEvent, map, of, switchAll, switchMap, takeUntil, tap, throttleTime} from "rxjs";
-import {CompanyService, DestroyService} from "../../core";
-import {ScrollDirection} from "../../core";
-import {Location} from "@angular/common";
+import {filter, fromEvent, map, takeUntil, tap, throttleTime} from "rxjs";
+import {DestroyService, ScrollDirection} from "../../core";
 
 @Directive({
   selector: '[appObserveElement]',
@@ -48,11 +46,9 @@ export class ObserveElementDirective implements OnInit {
     } else {
       this.scrolled.emit(ScrollDirection.Up);
     }
-    console.log(this._loadDownCount)
   }
 
   private canLoadUp(): boolean {
-    console.log('hhh')
     if (this._loadDownCount >= 1) {
       this._loadDownCount -= 1;
       return true;

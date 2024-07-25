@@ -4,7 +4,7 @@ import {IFilterCompanies} from "../models/filter-companies.interface";
 
 export class FilterFormViewModel {
 
-  private _form!:  FormGroup<IFilterCompaniesForm>;
+  private _form!: FormGroup<IFilterCompaniesForm>;
 
   public get controlMap(): IFilterCompaniesForm {
     return this._form.controls;
@@ -27,9 +27,9 @@ export class FilterFormViewModel {
   }
 
   public fromModel(model: IFilterCompanies): void {
-    this.controlMap.business_name.patchValue(model.business_name!, { onlySelf: true, emitEvent: false})
-    this.controlMap.industry.patchValue(model.industry!, { onlySelf: true, emitEvent: false})
-    this.controlMap.type.patchValue(model.type!, { onlySelf: true, emitEvent: false})
+    this.controlMap.business_name.patchValue(model.business_name!, {onlySelf: true, emitEvent: false})
+    this.controlMap.industry.patchValue(model.industry!, {onlySelf: true, emitEvent: false})
+    this.controlMap.type.patchValue(model.type!, {onlySelf: true, emitEvent: false})
   }
 
   public updateModel(model: IFilterCompanies): void {

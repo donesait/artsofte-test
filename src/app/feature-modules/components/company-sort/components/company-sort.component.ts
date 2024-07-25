@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SortControlComponent} from "../../sort-control/components/sort-control.component";
-import {DestroyService, SortType} from "../../../../core";
-import {SortingCompaniesService} from "../../../../core/services/sorting-companies.service";
+import {DestroyService, SortingCompaniesService, SortType} from "@core";
 import {debounceTime, takeUntil, tap} from "rxjs";
 import {CompanyFilterComponent} from "../../company-filter/components/company-filter.component";
 

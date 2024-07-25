@@ -1,11 +1,6 @@
-import { Component } from '@angular/core';
-import {YandexMapComponent} from "../../../feature-modules/components/yandex-map/components/yandex-map.component";
-import {
-  CompaniesMapListComponent
-} from "../../../feature-modules/components/companies-map-list/components/companies-map-list.component";
+import {Component} from '@angular/core';
+import {CompaniesMapListComponent, ModalComponent, YandexMapComponent} from "@feature-modules";
 import {YandexMapService} from "../services/yandex-map.service";
-import {ModalService} from "../services/modal.service";
-import {ModalComponent} from "../../../feature-modules/components/modal/components/modal.component";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -19,7 +14,7 @@ import {NgIf} from "@angular/common";
   ],
   templateUrl: './map-companies.component.html',
   styleUrl: './styles/map-companies.component.scss',
-  providers: [YandexMapService, ModalService]
+  providers: [YandexMapService]
 })
 export class MapCompaniesComponent {
 

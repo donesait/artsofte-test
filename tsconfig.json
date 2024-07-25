@@ -7,6 +7,12 @@
     "paths": {
       "@env": [
         "environments/environment"
+      ],
+      "@core": [
+        "app/core"
+      ],
+      "@feature-modules": [
+        "app/feature-modules"
       ]
     },
     "outDir": "./dist/out-tsc",

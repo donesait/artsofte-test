@@ -3,9 +3,9 @@ import {FilterFormViewModel} from "../data/view-models/filter-form.view-model";
 import {IFilterCompanies} from "../data/models/filter-companies.interface";
 import {ReactiveFormsModule} from "@angular/forms";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {DestroyService} from "../../../../core";
+import {DestroyService} from "@core";
 import {debounceTime, tap} from "rxjs";
-import {CompanyFilterService} from "../../../../core/services/company-filter.service";
+import {CompanyFilterService} from "@core";
 
 @Component({
   selector: 'app-company-filter',

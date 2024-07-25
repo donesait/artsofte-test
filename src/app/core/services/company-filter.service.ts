@@ -53,13 +53,11 @@ export class CompanyFilterService {
     if (!filterModel.type && !filterModel.business_name && !filterModel.industry) {
       return companies;
     }
-    const a = companies.filter((company: ICompanyBase) => {
+    return companies.filter((company: ICompanyBase): boolean => {
       const nameMatch: boolean = filterModel.business_name === '' || company.business_name.includes(filterModel.business_name);
       const industryMatch: boolean = filterModel.industry === '' || company.industry === filterModel.industry;
       const typeMatch: boolean = filterModel.type === '' || company.type === filterModel.type;
       return nameMatch && industryMatch && typeMatch;
-    });
-    console.log(a)
-    return a
+    })
   }
 }

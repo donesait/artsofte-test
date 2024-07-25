@@ -1,10 +1,12 @@
 <ng-container>
 
   <div class="company-list-container" *ngIf="!(_companyService.isLoading$ | async); else skeletonLoader">
-    <div *ngIf="((_companyService.companies$ | async)?.length); else nothingFound" class="common-list-container__content">
+    <div *ngIf="((_companyService.companies$ | async)?.length); else nothingFound"
+         class="common-list-container__content">
       <ul class="company__list" appObserveElement [distance]="200" [throttle]="800" (scrolled)="onScroll($event)">
         <li *ngFor="let company of (_companyService.companies$ | async); let index=index;" class="company-list__item">
-          <app-company-item (click)="navigateToDetailPage(company.id)" [company]="company" [index]="index"></app-company-item>
+          <app-company-item (click)="navigateToDetailPage(company.id)" [company]="company"
+                            [index]="index"></app-company-item>
         </li>
       </ul>
     </div>
@@ -12,13 +14,15 @@
 
   <ng-template #skeletonLoader>
     <div class="company-list-container">
-      <app-skeleton-loader *ngFor="let i of ARRAY_FOR_SKELETON" class="common-list-container__content"></app-skeleton-loader>
+      <app-skeleton-loader *ngFor="let i of ARRAY_FOR_SKELETON"
+                           class="common-list-container__content"></app-skeleton-loader>
     </div>
   </ng-template>
 
   <ng-template #nothingFound>
     <div class="nothing-found-container">
-      <h3 class="nothing-found__title">По вашим фильтрам ничего не найдено. Рекомендую сбросить фильтры или изменить их.</h3>
+      <h3 class="nothing-found__title">По вашим фильтрам ничего не найдено. Рекомендую сбросить фильтры или изменить
+        их.</h3>
     </div>
   </ng-template>
 

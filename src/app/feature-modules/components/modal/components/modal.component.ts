@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {ButtonComponent} from "../../button/components/button.component";
-import {DATA_KEY, LocalStorageService, SELECT_STORE_KEY} from "../../../../core";
+import {DATA_KEY, LocalStorageService, SELECT_STORE_KEY} from "@core";
 
 @Component({
   selector: 'app-modal',

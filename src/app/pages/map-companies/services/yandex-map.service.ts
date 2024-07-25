@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ICoordinates} from "../data/models/coordinates.interface";
 import {BehaviorSubject, filter, map, Observable, take, tap} from "rxjs";
-import {CompanyService} from "../../../core";
+import {CompanyService} from "@core";
 import {ICompanyBase} from "../../../core/models";
 import {ICompanyShortInformation} from "../data/models/company-short-information.type";
 
@@ -30,7 +30,14 @@ export class YandexMapService {
     this._companyService.allLoadedCompanies$.pipe(
       filter((companies: ICompanyBase[]): boolean => companies.length > 0),
       map((companies: ICompanyBase[]) => companies.slice(0, 100)),
-      map((companies: ICompanyBase[]): ICompanyShortInformation[] => companies.map((company: ICompanyBase): ICompanyShortInformation => ({latitude: company.latitude, type: company.type, phone_number: company.phone_number, id: company.id, business_name: company.business_name, longitude: company.longitude}))),
+      map((companies: ICompanyBase[]): ICompanyShortInformation[] => companies.map((company: ICompanyBase): ICompanyShortInformation => ({
+        latitude: company.latitude,
+        type: company.type,
+        phone_number: company.phone_number,
+        id: company.id,
+        business_name: company.business_name,
+        longitude: company.longitude
+      }))),
       tap((shortInformation: ICompanyShortInformation[]) => this._allCompaniesShortInformation$.next(shortInformation)),
       take(1)
     ).subscribe();

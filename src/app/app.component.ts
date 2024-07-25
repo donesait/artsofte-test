@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
-import {HeaderComponent} from "./feature-modules/components/header/compoenents/header.component";
-import {LoadingBarComponent} from "./feature-modules/components/loading-bar/loading-bar.component";
+import {HeaderComponent, LoadingBarComponent} from "@feature-modules";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +11,7 @@ import {LoadingBarComponent} from "./feature-modules/components/loading-bar/load
   providers: []
 })
 export class AppComponent implements OnInit {
+  public title: string = 'artsofte-test';
   public ngOnInit(): void {
     window.scrollTo(0, 0);
   }

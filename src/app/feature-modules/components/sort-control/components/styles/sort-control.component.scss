@@ -9,7 +9,7 @@ span {
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
-  position: relative; /* Для позиционирования псевдоэлемента */
+  position: relative;
 }
 
 .sort__option.active {
@@ -18,20 +18,20 @@ span {
 }
 
 .sort__option input[type="radio"] {
-  -webkit-appearance: none; /* Скрываем стандартную радиокнопку */
-  appearance: none; /* Скрываем стандартную радиокнопку */
+  -webkit-appearance: none;
+  appearance: none;
   width: 20px;
   height: 20px;
   border: 2px solid #ccc;
   margin-right: 8px;
   background-color: #fff;
-  transition: all 0.3s ease; /* Добавляем плавную анимацию */
-  position: relative; /* Для позиционирования псевдоэлемента */
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .sort__option input[type="radio"]:checked {
-  border-color: #007bff; /* Изменяем цвет рамки при выборе */
-  background-color: #fff; /* Оставляем фон белым */
+  border-color: #007bff;
+  background-color: #fff;
 }
 
 .sort__option input[type="radio"]:checked::after {
@@ -42,7 +42,7 @@ span {
   transform: translate(-50%, -50%);
   width: 12px;
   height: 12px;
-  background-color: #007bff; /* Делаем "галочку" синей */
+  background-color: #007bff;
   border-radius: 3px;
 }
 

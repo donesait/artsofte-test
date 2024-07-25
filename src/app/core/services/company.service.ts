@@ -1,18 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpEvent, HttpEventType, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {BASE_API_TOKEN} from "../injection-tokens";
-import {
-  BehaviorSubject,
-  delay,
-  filter,
-  map,
-  Observable,
-  Subscription,
-  switchMap,
-  tap,
-  throttleTime,
-  throwError
-} from "rxjs";
+import {BehaviorSubject, map, Observable, Subscription, tap, throttleTime} from "rxjs";
 import {enviroment} from "../../../enviroments/enviroment";
 import {ICompanyBase} from "../models";
 import {LocalStorageService} from "./local-storage.service";
@@ -82,7 +71,7 @@ export class CompanyService {
   }
 
   public set companies(companies: ICompanyBase[]) {
-      this._companies$.next(companies);
+    this._companies$.next(companies);
   }
 
   public get companiesSnapshot(): ICompanyBase[] {

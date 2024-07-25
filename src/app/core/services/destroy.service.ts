@@ -5,7 +5,7 @@ import {Subject} from "rxjs";
   providedIn: 'root'
 })
 export class DestroyService extends Subject<void> implements OnDestroy {
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.next();
     this.complete();
   }

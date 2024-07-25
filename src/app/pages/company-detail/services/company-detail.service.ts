@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {CompanyService, DestroyService} from "../../../core";
+import {Injectable} from '@angular/core';
+import {CompanyService, DestroyService} from "@core";
 import {filter, map, takeUntil, tap} from "rxjs";
 import {ICompanyBase} from "../../../core/models";
 
@@ -7,7 +7,8 @@ import {ICompanyBase} from "../../../core/models";
 export class CompanyDetailService {
   private _company!: ICompanyBase;
 
-  constructor(private readonly _companyService: CompanyService, private readonly _destroy$: DestroyService) { }
+  constructor(private readonly _companyService: CompanyService, private readonly _destroy$: DestroyService) {
+  }
 
   public getCompanyById(companyId: number): void {
     this._companyService.companies$

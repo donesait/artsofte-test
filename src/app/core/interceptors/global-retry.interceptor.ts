@@ -7,5 +7,5 @@ export const globalRetryInterceptor: HttpInterceptorFn = (req: HttpRequest<unkno
       count: 2,
       delay: (_, retryCount: number) => timer(retryCount * 1000)
     })
-  )
+  );
 };
