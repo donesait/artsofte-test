@@ -10,3 +10,4 @@ export * from './modal/components/modal.component';
 export * from './sceleton-loader/components/skeleton-loader.component';
 export * from './sort-control/components/sort-control.component';
 export * from './yandex-map/components/yandex-map.component';
+export * from './layout/components/layout.component';

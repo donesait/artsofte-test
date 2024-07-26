@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import {NgStyle} from "@angular/common";
 
 @Component({
@@ -7,7 +7,8 @@ import {NgStyle} from "@angular/common";
   standalone: true,
   imports: [
     RouterLink,
-    NgStyle
+    NgStyle,
+    RouterLinkActive
   ],
   templateUrl: './button.component.html',
   styleUrl: './styles/button.component.scss'
@@ -17,4 +18,5 @@ export class ButtonComponent {
   @Input() public disabled?: boolean = false;
   @Input() public routerLink: string | string[] | null = null;
   @Input() backgroundColor?: string;
+  @Input() routerLinkActive!: string;
 }

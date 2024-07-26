@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
-import {HeaderComponent, LoadingBarComponent} from "@feature-modules";
+import {RouterOutlet} from '@angular/router';
+import {LayoutComponent} from "./feature-modules/components/layout/components/layout.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, RouterLink, LoadingBarComponent],
+  imports: [RouterOutlet, LayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: []
