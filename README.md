@@ -1,27 +1,8 @@
-# ArtsofteTest
+Задачи на первый взгляд показались легкими для меня (уровень Junior), но по ходу их решения начал сам придумывать дополнительные фичи, поэтому приложение стало более масштабным, чем, наверное, вы ожидаете. 
+Решил попробовать свои силы и поковыряться с задачами из уровня Middle, так как там достаточно интересные задачи. На своем опыте я всегда реализовывал постраничную или ограниченную элементами пагинацию, но в повседневной жизни часто встречал подгрузку данных при скролле. Уже интересовался, читал, смотрел, как основано такое решение, но сам никогда не пытался реализовать подобную фичу. Данное тестовое уже принесло огромный плюс (т.к я постарался реализовать данную фичу). В интернете много готовых библиотек, для корректной работы со скроллом, но я решил, что буду реализовывать фичу только собственными силами, основываясь на свои знания и умениях. 
+Задача с картой была, наверное,  второй по сложности (после скролла). До этого я работал с другой картой и на чистом js`e. Когда искал решение, как внедрить карту, то наткнулся на уже готовую библиотеку, обертку для яндекс карт на ангуляр, но не захотел ее использовать, т.к решил, что все тестовое буду делать без использования дополнительных библиотек. На первый взгляд казалось, что внедрить обычный js скрипт в приложение ангуляр будет чем-то тяжелым, но покопавшись в документации, то понял, что все намного легче, чем ожидалось. Карта имеет 'display: inline-block', что потрепало не мало нервов при верстке, поэтому в некоторых моментах страница может отрабатывать некорректно(
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
+Дополнительно я сбилдил приложение и перенес на Capacitor, поэтому его можно открыть на андроиде (в репозитории его нет, могу скинуть .apk файл с билдом, если потребуется или будет интересно посмотреть)
+Использовать ui киты я также не стал, так как все делал без сторонних либ.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+В итоге: при решении тестового я поработал с новыми технологиями, поработал с картами и с бесконечной пагинацией, да и просто круто провел время, решая интересные и новые задачи.
